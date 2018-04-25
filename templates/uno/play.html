@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+{% block content %}
+
+<script type="text/javascript" src='{% static "js/reconnecting-websocket.min.js" %}'></script>
+<script type="text/javascript" src='{% static "js/websocket-client.js" %}'></script>
+<script src="{% static 'js/bootstrap-notify.min.js' %}"></script>
+
+
+
+  <div class="row">
+  <div class="col col-sm-12 col-lg-12">
+      <h2 style="text-align:center;" >Game {{ game.name }}</h2>
+  </div>
+  <div class="col col-sm-4 col-lg-4">
+      <div class="hidden-md hidden-lg" id="turn_small"></div>
+      <h3>Your Cards<h3>
+      <div id="your_cards"></div>
+  </div>
+  <div class="col col-sm-4 col-lg-4">
+      <h3>Top<h3>
+      <div id="top"></div>
+      <br><button style="width:100%" id="throw" class="btn btn-default">throw one</button> 
+      <br><button id="next" style="width:100%" class="btn btn-default">stay</button>
+  </div>
+  <div class="col col-lg-4 col-sm-4">
+      <h3>Players<h3>
+      <div id="players"></div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+  <div class="modal fade" id="color-modal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 style="text-align:center;" class="modal-title">Choose a color</h4>
+        </div>
+        <div class="modal-body">
+		 <div style="text-align: center;">
+          <button id="color_0" class="btn btn-lg btn-warning">yellow</button>
+          <button id="color_1" class="btn btn-lg btn-danger">red</button>
+          <button id="color_2" class="btn btn-lg btn-info">blue</button>
+          <button id="color_3" class="btn btn-lg btn-success">green</button>
+ 		 </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+{% endblock content %}

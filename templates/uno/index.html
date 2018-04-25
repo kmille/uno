@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+Welcome to UNO! <br>
+
+{% load socialaccount %}
+
+<h4><strong>NEW:</strong> <a href="{% provider_login_url 'github' %}">Sign up with your Github Account!</a></h4>
+
+
+
+{% endblock content %}

@@ -1,0 +1,13 @@
+[Unit]
+Description=python runworker server for uno
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/uno
+ExecStart=/opt/uno/venv/bin/python manage.py runworker --threads 2
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,22 @@
+.btn-dark { 
+    background-color:#000000;
+    color:#ffffff;
+}
+input {
+        margin: 2px;
+}
+
+button {
+        margin: 2px;
+}
+#align-right {
+    display: inline;
+    text-align: right;
+
+}
+
+#panel-game {
+    display:inline;
+    margin:0px;
+    padding:0px;
+}

@@ -1,0 +1,54 @@
+{% block content %}
+     {% for game in games %}
+       <div class="panel panel-primary">
+          <div class="panel-heading">
+                {{ game.name }}
+                {% if game.creator == request.user %}
+                    <form id="panel-game" method="post" action="{% url 'delete' game_id=game.id %}">
+                    {% csrf_token %}
+                    <a data-placement="top" data-toggle="tooltip" title="Delete">
+                        <button class="btn btn-danger btn-xs" data-toggle="modal">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </a>
+                    </form>
+                    {% if game.players.count > 0  %}
+                    <form id="panel-game" method="post" action="{% url 'start' game_id=game.id %}">
+                    {% csrf_token %}
+                    <a data-placement="top" data-toggle="tooltip" title="Start">
+                        <button class="btn btn-success btn-xs" data-title="Start" data-toggle="modal">
+                        <span class="glyphicon glyphicon-expand"></span>
+                        </button>
+                    </a>
+                    </form>
+                    {% endif %}
+                {% else %}
+                  {% if not request.user in game.players.all  %}
+                    <form id="panel-game" method="post" action="{% url 'join' game_id=game.id %}">
+                    {% csrf_token %}
+                    <a data-placement="top" data-toggle="tooltip" title="Join">
+                        <button id="join" class="btn btn-success btn-xs" data="{{ game.id }}" data-toggle="modal">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </a>
+                    </form>
+                  {% endif %}
+                {% endif %}
+          </div>
+          <div class="panel-body">
+  		      Creator: {{ game.creator.username }} <br>
+              {% if game.state == 0 %}
+                State: Pending <br>
+              {% elif game.state == 1 %}
+                State: <a href="{% url 'play' game_id=game.id %}">Running</a> <br>
+              {% elif game.state == 2 %}
+                State: Finished <br>
+              {% endif %}
+              {% for player in game.players.all %}
+  		      Opponent: {{ player.username }} <br>
+              {% endfor %}
+		  </div>
+       </div>
+      {% endfor %}
+    
+{% endblock content %}
