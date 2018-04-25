@@ -1,7 +1,8 @@
 # UNO <3 (the worlds only flash-free uno)
 
-This was a hobby project to get experience with django + channels (websockets) 
+This was a hobby project to get experience with django + channels (websockets)  
 The code of the game itself is still pretty ugly  
+Live demo: https://uno.androidloves.me  
 
 # Installation 
 You can use the Vagrant file in the deployment dir  
@@ -19,15 +20,15 @@ source venv/bin/activate
 pip install -r requirements.txt  
 python manage.py migrate   
 
-## Running for testing  
-for testing (run both and in virtualenv):  
+## Run it for testing  
+source venv/bin/activate
 python manage.py runserver 0.0.0.0:80  
 or  
 daphne -b 0.0.0.0 -p 80 game.asgi:channel_layer  
 python manage.py runworker  
 
 
-## For productive deployment:  
+## For production deployment:  
 Change debug = False and the SECRET_KEY in game/settings.py
 mv deployment/uno-daphne.service /etc/systemd/system  
 mv deployment/uno-worker.service /etc/systemd/system  
@@ -62,5 +63,7 @@ https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-u
 
 # Some screenhots
 ![Lobby 1](screenshots/lobby.png)  
+<br />
 ![Lobby 2](screenshots/lobby-2.png)  
+<br />
 ![Gameplay](screenshots/game.png)  
